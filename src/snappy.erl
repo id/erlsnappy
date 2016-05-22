@@ -35,8 +35,8 @@ encode(Bytes) ->
     true ->
       {error, too_large};
     false ->
-      Acc = <<(varint(Size)):32/unsigned-little-integer>>,
-      encode(Bytes, Acc)
+      Acc = <<(varint(Size))/binary>>,
+      {ok, encode(Bytes, Acc)}
   end.
 
 encode(<<Block:?MAX_BLOCK_SIZE/binary, Bin>>, Acc0) ->
@@ -206,6 +206,6 @@ varint(I) ->
   H = I bsr 7,
   L = I band 127,
   case H =:= 0 of
-    true  -> [L];
-    false -> [128 + L | varint(H)]
+    true  -> iolist_to_binary([L]);
+    false -> iolist_to_binary([128 + L | varint(H)])
   end.

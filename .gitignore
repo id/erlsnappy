@@ -1,3 +1,6 @@
 /ebin/*.beam
 /ebin/*.app
 /erlsnappy.d
+/ebin/
+/logs/
+/test/
