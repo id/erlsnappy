@@ -1,6 +1,7 @@
-/ebin/*.beam
+*.beam
 /ebin/*.app
 /erlsnappy.d
 /ebin/
 /logs/
-/test/
+.erlang.mk/
+deps
